@@ -26,7 +26,8 @@
             padding: 20px;
         }
 
-        #chart-container, #chart-container2 {
+        #chart-container,
+        #chart-container2 {
             width: 80%;
             height: 300px;
             /* İhtiyaca göre ayarlayabilirsiniz */
@@ -90,44 +91,7 @@
             <!-- Add your page content here -->
             <div class="container-fluid align-items-center justify-content-center">
                 <div class="row ">
-                    <div class="col-6">
-
-                        <div id="chart-container"></div>
-                    </div>
-                    <div class="col-6">
-                        <div id="chart-container2"></div>
-                    </div>
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header card-header-primary">
-                                <h4 class="card-title ">Müşteri Tablosu</h4>
-                                <p class="card-category"> Burada müşterilerin detayları listelenmektedir</p>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class=" text-primary">
-                                            <th>#</th>
-                                            <th>Ad</th>
-                                            <th>Soyad</th>
-                                            <th>Cinsiyet</th>
-                                            <th>Ülke</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Ali</td>
-                                                <td>Veli</td>
-                                                <td>Erkek</td>
-                                                <td>Türkiye</td>
-                                            </tr>
-                                            <!-- Diğer müşteri bilgileri -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="chart-container" class="chart-container"></div>
                 </div>
             </div>
         </div>
@@ -138,8 +102,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="/node_modules/material-dashboard/assets/js/material-dashboard.js"></script>
-    <script src="/js/memnuniyet.js"></script>
-    <script src="/js/chart.js"></script>
+    <script src="/js/doluluk.js"></script>
 </body>
 
 </html>

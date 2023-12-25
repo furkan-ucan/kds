@@ -36,7 +36,7 @@ const dataSource = {
 FusionCharts.ready(function () {
     var myChart = new FusionCharts({
         type: "sankey",
-        renderAt: "chart-container",
+        renderAt: "chart-container2",
         width: "100%",
         height: "100%",
         dataFormat: "json",
