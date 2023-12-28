@@ -15,6 +15,8 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.1/perfect-scrollbar.min.js"></script>
     <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
     <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.candy.js"></script>
+    <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.msspline.js"></script>
+    <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
 
     <style>
         .main-container {
@@ -26,7 +28,8 @@
             padding: 20px;
         }
 
-        #chart-container, #chart-container2 {
+        #chart-container,
+        #chart-container2 {
             width: 80%;
             height: 300px;
             /* İhtiyaca göre ayarlayabilirsiniz */
@@ -84,52 +87,87 @@
             </ul>
         </div>
     </aside>
-    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ps ps--active-y">
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Add your page content here -->
-            <div class="container-fluid align-items-center justify-content-center">
-                <div class="row ">
-                    <div class="col-6">
 
-                        <div id="chart-container"></div>
-                    </div>
-                    <div class="col-6">
-                        <div id="chart-container2"></div>
-                    </div>
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header card-header-primary">
-                                <h4 class="card-title ">Müşteri Tablosu</h4>
-                                <p class="card-category"> Burada müşterilerin detayları listelenmektedir</p>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class=" text-primary">
-                                            <th>#</th>
-                                            <th>Ad</th>
-                                            <th>Soyad</th>
-                                            <th>Cinsiyet</th>
-                                            <th>Ülke</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Ali</td>
-                                                <td>Veli</td>
-                                                <td>Erkek</td>
-                                                <td>Türkiye</td>
-                                            </tr>
-                                            <!-- Diğer müşteri bilgileri -->
-                                        </tbody>
-                                    </table>
-                                </div>
+
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
+        <div class="wrapper">
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-12 text-center">
+                                <h1>İstatistikler</h1>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <!-- Charts -->
+                        <div class="row mt-4">
+                            <div class="col-lg-6 mb-lg-0 mb-4">
+                                <div class="card">
+                                    <div class="card-header pb-0">
+                                        <h6> Doluluk Oranı</h6>
+                                    </div>
+                                    <div class="card-body p-3">
+                                        <div id="chart-container" class="chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 mb-lg-0 mb-4">
+                                <div class="card">
+                                    <div class="card-header pb-0">
+                                        <h6> İptal Oranı</h6>
+                                    </div>
+                                    <div class="card-body p-3">
+                                        <div id="chart-container2" class="chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header card-header-primary">
+                                        <h4 class="card-title">Müşteri Tablosu</h4>
+                                        <p class="card-category">Burada müşterilerin detayları listelenmektedir</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead class=" text-primary">
+                                                    <th>#</th>
+                                                    <th>Ad</th>
+                                                    <th>Soyad</th>
+                                                    <th>Cinsiyet</th>
+                                                    <th>Ülke</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Ali</td>
+                                                        <td>Veli</td>
+                                                        <td>Erkek</td>
+                                                        <td>Türkiye</td>
+                                                    </tr>
+                                                    <!-- Diğer müşteri bilgileri -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
+
         </div>
     </main>
 
