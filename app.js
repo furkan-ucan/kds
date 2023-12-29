@@ -4,6 +4,7 @@ const router = require("./routers");
 const port = 3000;
 const path = require("path");
 
+
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
@@ -17,6 +18,12 @@ app.get("/", (req, res) => {
 app.get("/grafik", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "grafik.html"));
 });
+
+app.get('/bundle.js', function(req, res) {
+  res.header('Content-Type', 'application/javascript');
+  res.sendFile(__dirname + '/bundle.js');
+});
+
 
 
 
