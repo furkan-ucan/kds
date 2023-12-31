@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Dashboard 2</title>
+    <!-- Core JS Files -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.1/perfect-scrollbar.min.js"></script>
+    <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+    <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+
+    <!-- Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <!-- Material Dashboard 2 CSS -->
+    <link rel="stylesheet"
+        href="https://demos.creative-tim.com/material-dashboard/assets/css/material-dashboard.min.css">
+
+    <!-- Material Dashboard 2 JS -->
+    <script src="https://demos.creative-tim.com/material-dashboard/assets/js/material-dashboard.min.js"></script>
+
+</head>
+
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <aside
+        class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"
+        id="sidenav-main">
+        <div class="sidenav-header">
+            <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+                aria-hidden="true" id="iconSidenav"></i>
+            <a class="navbar-brand m-0" href="/index.html">
+                <span class="ms-1 font-weight-bold text-white">Otel İçin KDS</span>
+            </a>
+        </div>
+        <hr class="horizontal light mt-0 mb-2">
+        <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="/doluluk.html">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-tachometer-alt opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Doluluk Oranları</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="../pages/tables.html">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-table opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">İptal Oranları</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="../pages/tables.html">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-table opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Talep Oranları</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="/grafik.html">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-table opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Müşteriler</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="/analiz.html">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-table opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Analiz</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
+        <div class="wrapper">
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-12 text-center">
+                                <h1>İstatistikler</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <!-- Statistic Cards -->
+                        <div class="row">
+                            <!-- Card 1 -->
+                            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                                <div class="card ">
+                                    <div class="card-header p-3 pt-2">
+                                        <div
+                                            class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                                            <i class="fas fa-tachometer-alt"></i>
+                                        </div>
+                                        <div class="text-end pt-1">
+                                            <p class="text-sm mb-0 text-capitalize"> Gelecek 12 Ayın Genel Doluluk Oranı
+                                            </p>
+                                            <h3 id="arabaSayisi" class="card-title"></h3>
+                                        </div>
+                                    </div>
+                                    <hr class="dark horizontal my-0">
+                                    <div class="card-footer p-3">
+                                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">
+                                            </span>Geçen Seneye Kıyasla</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="col-lg-3 col-6">
+                                <div class="card">
+                                    <div class="card-header p-3 pt-2">
+                                        <div
+                                            class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                                            <i class="fas fa-times-circle"></i>
+                                        </div>
+                                        <div class="text-end pt-1">
+                                            <p class="text-sm mb-0 text-capitalize">Gelecek 12 Ayın Genel İptal Oranı
+                                            </p>
+                                            <h3 id="musteriSayisi" class="card-title"></h3>
+                                        </div>
+                                    </div>
+                                    <hr class="dark horizontal my-0">
+                                    <div class="card-footer p-3" id="iptal">
+                                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">
+                                            </span>Geçen Seneye Kıyasla
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="col-lg-3 col-6">
+                                <div class="card">
+                                    <div class="card-header p-3 pt-2">
+                                        <div
+                                            class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                                            <i class="fas fa-chart-line"></i>
+                                        </div>
+                                        <div class="text-end pt-1 text-dark">
+                                            <p class="text-sm mb-0 text-capitalize">Gelecek 12 Ayın Genel Talep Oranı
+                                            </p>
+                                            <h3 id="rezSayisi" class="card-title"></h3>
+                                        </div>
+                                    </div>
+                                    <hr class="dark horizontal my-0">
+                                    <div class="card-footer p-3 text-dark" id="talep">
+                                        <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">
+                                            </span> Geçen Seneye Kıyasla
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 4 -->
+                            <div class="col-lg-3 col-6">
+                                <div class="card ">
+                                    <div class="card-header p-3 pt-2">
+                                        <div
+                                            class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                                            <i class="fas fa-smile"></i>
+                                        </div>
+                                        <div class="text-end pt-1">
+                                            <p class="text-sm mb-0 text-capitalize">Genel Memnuniyet Oranı</p>
+                                            <h3 id="soforSayisi" class="card-title">85%</h3>
+                                        </div>
+                                    </div>
+                                    <hr class="dark horizontal my-0">
+                                    <div class="card-footer p-3">
+                                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5%
+                                            </span>than last month</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Charts -->
+                        <div class="row mt-4">
+                            <div id="dolulukCarousel" class="carousel slide col-lg-4" data-ride="carousel">
+                                <div class="carousel-inner">
+
+                                    <div class="carousel-item active">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <div id="chart-development-activity-1" class="chart"></div>
+                                                </div>
+                                                <!-- Carousel kontrol düğmeleri -->
+                                                <a class="carousel-control-prev" href="#dolulukCarousel" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#dolulukCarousel" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <div id="chart-development-activity-2" class="chart"></div>
+                                                </div>
+                                                <!-- Carousel kontrol düğmeleri -->
+                                                <a class="carousel-control-prev" href="#dolulukCarousel" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#dolulukCarousel" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <div id="chart-development-activity-3" class="chart"></div>
+                                                </div>
+                                                <!-- Carousel kontrol düğmeleri -->
+                                                <a class="carousel-control-prev" href="#dolulukCarousel" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#dolulukCarousel" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <div id="chart-development-activity-4" class="chart"></div>
+                                                </div>
+                                                <!-- Carousel kontrol düğmeleri -->
+                                                <a class="carousel-control-prev" href="#dolulukCarousel" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#dolulukCarousel" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <div id="chart-development-activity-5" class="chart"></div>
+                                                </div>
+                                                <!-- Carousel kontrol düğmeleri -->
+                                                <a class="carousel-control-prev" href="#dolulukCarousel" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#dolulukCarousel" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="iptalCarousel" class="carousel slide col-lg-4" data-ride="carousel">
+                                <div class="carousel-inner">
+
+                                    <div class="carousel-item active">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <div id="chart-development-activity-6" class="chart"></div>
+                                                </div>
+                                                <!-- Carousel kontrol düğmeleri -->
+                                                <a class="carousel-control-prev" href="#iptalCarousel" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#iptalCarousel" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <div id="chart-development-activity-7" class="chart"></div>
+                                                </div>
+                                                <!-- Carousel kontrol düğmeleri -->
+                                                <a class="carousel-control-prev" href="#iptalCarousel" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#iptalCarousel" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <div id="chart-development-activity-8" class="chart"></div>
+                                                </div>
+                                                <!-- Carousel kontrol düğmeleri -->
+                                                <a class="carousel-control-prev" href="#iptalCarousel" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#iptalCarousel" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <div id="chart-development-activity-9" class="chart"></div>
+                                                </div>
+                                                <!-- Carousel kontrol düğmeleri -->
+                                                <a class="carousel-control-prev" href="#iptalCarousel" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#iptalCarousel" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <div id="chart-development-activity-10" class="chart"></div>
+                                                </div>
+                                                <!-- Carousel kontrol düğmeleri -->
+                                                <a class="carousel-control-prev" href="#iptalCarousel" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#iptalCarousel" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="talepCarousel" class="carousel slide col-lg-4" data-ride="carousel">
+                                <div class="carousel-inner">
+
+                                    <div class="carousel-item active">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <div id="chart-development-activity-11" class="chart"></div>
+                                                </div>
+                                                <!-- Carousel kontrol düğmeleri -->
+                                                <a class="carousel-control-prev" href="#talepCarousel" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#talepCarousel" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <div id="chart-development-activity-12" class="chart"></div>
+                                                </div>
+                                                <!-- Carousel kontrol düğmeleri -->
+                                                <a class="carousel-control-prev" href="#talepCarousel" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#talepCarousel" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <div id="chart-development-activity-13" class="chart"></div>
+                                                </div>
+                                                <!-- Carousel kontrol düğmeleri -->
+                                                <a class="carousel-control-prev" href="#talepCarousel" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#talepCarousel" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <div id="chart-development-activity-14" class="chart"></div>
+                                                </div>
+                                                <!-- Carousel kontrol düğmeleri -->
+                                                <a class="carousel-control-prev" href="#talepCarousel" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#talepCarousel" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <div id="chart-development-activity-15" class="chart"></div>
+                                                </div>
+                                                <!-- Carousel kontrol düğmeleri -->
+                                                <a class="carousel-control-prev" href="#talepCarousel" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#talepCarousel" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- Seçenek ve Giriş Alanı -->
+                        <div class="row mt-4">
+                            <div class="col-lg-3">
+                                <label for="odaSec">Oda Seç:</label>
+                                <select id="odaSec" class="form-select">
+                                    <option value="1">Standart Oda- Fiyat: 150</option>
+                                    <option value="3">Suit Oda-Fiyat: 350 </option>
+                                    <option value="14">Deluxe Oda- Fiyat: 250</option>
+                                    <option value="15">Aile Odası- Fiyat: 300</option>
+                                    <option value="16"> Ekonomik Oda - Fiyat: 100</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="fiyatGir">Fiyat Gir:</label>
+                                <input type="number" id="fiyatGir" class="form-control" placeholder="Fiyatı Giriniz">
+                            </div>
+                            <div class="col-lg-3">
+                                <button class="btn btn-primary" onclick="getComparisonData()">Karşılaştır</button>
+                            </div>
+                        </div>
+
+                   
+                        <div class="row mt-4">
+                            <div class="col-lg-12 mb-lg-0 mb-4">
+                                <div class="card">
+                                    <div class="card-body p-3">
+                                        <div id="dolulukOraniKarsilastirma" class="chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-lg-12 mb-lg-0 mb-4">
+                                <div class="card">
+                                    <div class="card-body p-3">
+                                        <div id="dolulukOraniKarsilastirma1" class="chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                </section>
+
+
+
+
+
+            </div>
+        </div>
+    </main>
+
+</body>
+
+<script src="/js/doluluk.js"></script>
+<script src="/js/iptal.js"></script>
+<script src="/js/talep.js"></script>
+<script src="/js/dolulukOraniKarsilastirma.js"></script>
+<script src="/js/analiz.js"></script>
+<script src="/js/dolulukOraniKarsilastirmaGrafik.js"></script>
+<script src="/js/dolulukOraniKarsilastirmaGrafik1.js"></script>
+
+</html>

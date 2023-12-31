@@ -1,12 +1,11 @@
-// Prepare FusionCharts
 FusionCharts.ready(function () {
     // Define the room types and their corresponding chart container ids
     const roomTypes = [
-        { id: 1, name: 'Standart Oda', containerId: 'chart-development-activity-6' },
-        { id: 3, name: 'Suit Oda', containerId: 'chart-development-activity-7' },
-        { id: 14, name: 'Deluxe Oda', containerId: 'chart-development-activity-8' },
-        { id: 15, name: 'Aile Odası', containerId: 'chart-development-activity-9' },
-        { id: 16, name: 'Ekonomik Oda', containerId: 'chart-development-activity-10' },
+        { id: 1, name: 'Standart Oda', containerId: 'dolulukOraniKarsilastirma1' },
+        { id: 3, name: 'Suit Oda', containerId: 'dolulukOraniKarsilastirma2' },
+        { id: 14, name: 'Deluxe Oda', containerId: 'dolulukOraniKarsilastirma3' },
+        { id: 15, name: 'Aile Odası', containerId: 'dolulukOraniKarsilastirma4' },
+        { id: 16, name: 'Ekonomik Oda', containerId: 'dolulukOraniKarsilastirma5' },
     ];
 
     // Create a chart for each room type
@@ -37,11 +36,11 @@ FusionCharts.ready(function () {
         }).render();
 
         // Fetch data from the API
-        fetch('http://localhost:3000/api/iptalOrani')
+        fetch('http://localhost:3000/api/karsilastirmaDoluluk1')
             .then(response => response.json())
             .then(data => {
-                // Filter the data to include only entries for the current room type from January 1, 2024, and onwards
-                const filteredData = data.filter(item => item.oda_id === roomType.id && new Date(item.tarih) >= new Date(2024, 0, 1));
+                // Filter the data to include only entries for the current room type
+                const filteredData = data.previousData.filter(item => item.oda_id === roomType.id);
 
                 // Group the filtered data by month and year
                 const groupedMonths = filteredData.reduce((acc, item) => {
@@ -51,14 +50,15 @@ FusionCharts.ready(function () {
                     }
                     return acc;
                 }, []);
+                
                 // Convert the grouped months to the format required by the chart
                 const processedMonths = groupedMonths.map(month => ({ label: month }));
 
                 // Group the data by room type
                 const groupedData = filteredData.reduce((acc, item) => {
                     acc.push({
-                        value: item.iptal_miktari.toString(),
-                        toolText: `<b>${item.iptal_miktari}%</b> Doluluk ${roomType.name} on ${new Date(item.tarih).toLocaleString('default', { month: 'long', year: 'numeric' })} <br/> `
+                        value: item.oran.toString(),
+                        toolText: `<b>${item.oran}%</b> İptal Oranı ${roomType.name} on ${new Date(item.tarih).toLocaleString('default', { month: 'long', year: 'numeric' })} <br/> `
                     });
                     return acc;
                 }, []);

@@ -1,108 +1,79 @@
-// Veri setiniz
-const dataSource = {
-    chart: {
-        caption: "Oda Doluluk Oranları Karşılaştırması",
-        yaxisname: "# of Doluluk",
-        subcaption: "Son hafta",
-        numdivlines: "3",
-        showvalues: "0",
-        legenditemfontsize: "15",
-        legenditemfontbold: "1",
-        theme: "fusion",
-        numberSuffix: "%" // Set the numberSuffix to "%" to display values as percentages
-    },
-    categories: [
-        {
-            category: [
-                { label: "Ocak" },
-                { label: "Şubat" },
-                { label: "Mart" },
-                { label: "Nisan" },
-                { label: "Mayıs" },
-                { label: "Haziran" },
-                { label: "Temmuz" }
-                // ... diğer aylar
-            ]
-        }
-    ],
-    dataset: [
-        {
-            seriesname: "Suit Oda",
-            data: [
-                { value: "15", price: "1000", toolText: "<b>15%</b> Doluluk Suit Oda on Ocak <br/> Fiyat: 1000" },
-                { value: "10", price: "1000", toolText: "<b>10%</b> Doluluk Suit Oda on Şubat <br/> Fiyat: 1000" },
-                { value: "12", price: "1000", toolText: "<b>12%</b> Doluluk Suit Oda on Mart <br/> Fiyat: 1000" },
-                { value: "8", price: "1000", toolText: "<b>8%</b> Doluluk Suit Oda on Nisan <br/> Fiyat: 1000" },
-                { value: "6", price: "1000", toolText: "<b>6%</b> Doluluk Suit Oda on Mayıs <br/> Fiyat: 1000" },
-                { value: "4", price: "1000", toolText: "<b>4%</b> Doluluk Suit Oda on Haziran <br/> Fiyat: 1000" },
-                { value: "5", price: "1000", toolText: "<b>5%</b> Doluluk Suit Oda on Temmuz <br/> Fiyat: 1000" }
-                // ... diğer ayların değerleri
-            ]
-        },
-        {
-            seriesname: "Standart Oda",
-            data: [
-                { value: "10", price: "500", toolText: "<b>10%</b> Doluluk Standart Oda on Ocak <br/> Fiyat: 500" },
-                { value: "8", price: "500", toolText: "<b>8%</b> Doluluk Standart Oda on Şubat <br/> Fiyat: 500" },
-                { value: "15", price: "500", toolText: "<b>15%</b> Doluluk Standart Oda on Mart <br/> Fiyat: 500" },
-                { value: "5", price: "500", toolText: "<b>5%</b> Doluluk Standart Oda on Nisan <br/> Fiyat: 500" },
-                { value: "7", price: "500", toolText: "<b>7%</b> Doluluk Standart Oda on Mayıs <br/> Fiyat: 500" },
-                { value: "10", price: "500", toolText: "<b>10%</b> Doluluk Standart Oda on Haziran <br/> Fiyat: 500" },
-                { value: "6", price: "500", toolText: "<b>6%</b> Doluluk Standart Oda on Temmuz <br/> Fiyat: 500" }
-                // ... diğer ayların değerleri
-            ]
-        },
-        {
-            seriesname: "Deluxe Oda",
-            data: [
-                { value: "12", price: "1500", toolText: "<b>12%</b> Doluluk Deluxe Oda on Ocak <br/> Fiyat: 1500" },
-                { value: "7", price: "1500", toolText: "<b>7%</b> Doluluk Deluxe Oda on Şubat <br/> Fiyat: 1500" },
-                { value: "14", price: "1500", toolText: "<b>14%</b> Doluluk Deluxe Oda on Mart <br/> Fiyat: 1500" },
-                { value: "9", price: "1500", toolText: "<b>9%</b> Doluluk Deluxe Oda on Nisan <br/> Fiyat: 1500" },
-                { value: "8", price: "1500", toolText: "<b>8%</b> Doluluk Deluxe Oda on Mayıs <br/> Fiyat: 1500" },
-                { value: "5", price: "1500", toolText: "<b>5%</b> Doluluk Deluxe Oda on Haziran <br/> Fiyat: 1500" },
-                { value: "10", price: "1500", toolText: "<b>10%</b> Doluluk Deluxe Oda on Temmuz <br/> Fiyat: 1500" }
-                // ... diğer ayların değerleri
-            ]
-        }
-        // İhtiyacınıza göre diğer oda türlerinin veri setlerini ekleyin
-    ]
-};
-
-// Doluluk oranını güncelleme fonksiyonu
-function updateChart() {
-    const roomPrice = parseFloat(document.getElementById("roomPrice").value);
-
-    // Her bir oda türü için doluluk oranını güncelle
-    dataSource.dataset.forEach((roomType) => {
-        roomType.data.forEach((dataPoint, index) => {
-            const price = parseFloat(dataPoint.price);
-            const totalRevenue = price * dataPoint.value; // Toplam gelir
-            const totalCapacity = 1000; // Örneğin, toplam kullanılabilir kapasite
-            const occupancyRate = (totalRevenue / totalCapacity) * 100; // Doluluk oranı
-
-            // Doluluk oranını güncelle
-            dataPoint.value = occupancyRate.toFixed(2);
-            // Tooltext'i güncelle
-            dataPoint.toolText = `<b>${dataPoint.value}%</b> Doluluk ${roomType.seriesname} on ${dataSource.categories[0].category[index].label} <br/> Fiyat: ${roomPrice}`;
-        });
-    });
-
-    // Grafik nesnesini güncelle
-    const myChart = FusionCharts("chart-development-activity");
-    myChart.setChartData(dataSource);
-}
-
+// Prepare FusionCharts
 FusionCharts.ready(function () {
-    var myChart = new FusionCharts({
-        type: "msspline",
-        renderAt: "chart-development-activity",
-        width: "100%",
-        height: "400",
-        dataFormat: "json",
-        dataSource
-    }).render();
+    // Define the room types and their corresponding chart container ids
+    const roomTypes = [
+        { id: 1, name: 'Standart Oda', containerId: 'chart-development-activity-11' },
+        { id: 3, name: 'Suit Oda', containerId: 'chart-development-activity-12' },
+        { id: 14, name: 'Deluxe Oda', containerId: 'chart-development-activity-13' },
+        { id: 15, name: 'Aile Odası', containerId: 'chart-development-activity-14' },
+        { id: 16, name: 'Ekonomik Oda', containerId: 'chart-development-activity-15' },
+    ];
 
-    // Call updateChart function after the chart is rendered
-    updateChart();
+    // Create a chart for each room type
+    roomTypes.forEach(roomType => {
+        var myChart = new FusionCharts({
+            type: "msspline", // Change the chart type to zoomline
+            renderAt: roomType.containerId,
+            width: "100%",
+            height: "400",
+            dataFormat: "json",
+            dataSource: {
+                chart: {
+                    caption: `Gelecek 12 Tahmini Talep Oranı - ${roomType.name}`,
+                    yaxisname: "# of Talep",
+                    subcaption: "Son hafta",
+                    numdivlines: "3",
+                    showvalues: "0",
+                    legenditemfontsize: "15",
+                    legenditemfontbold: "1",
+                    theme: "fusion",
+                    numberSuffix: "%"
+                },
+                categories: [
+                    { category: [] } // Initialize with an object that has a 'category' property
+                ],
+                dataset: [] // Initially an empty data set
+            }
+        }).render();
+
+        // Fetch data from the API
+        fetch('http://localhost:3000/api/talepOrani')
+            .then(response => response.json())
+            .then(data => {
+                // Filter the data to include only entries for the current room type from January 1, 2024, and onwards
+                const filteredData = data.filter(item => item.oda_id === roomType.id && new Date(item.tarih) >= new Date(2024, 0, 1));
+
+                // Group the filtered data by month and year
+                const groupedMonths = filteredData.reduce((acc, item) => {
+                    const monthYear = new Date(item.tarih).toLocaleString('default', { month: 'long', year: 'numeric' });
+                    if (!acc.includes(monthYear)) {
+                        acc.push(monthYear);
+                    }
+                    return acc;
+                }, []);
+                // Convert the grouped months to the format required by the chart
+                const processedMonths = groupedMonths.map(month => ({ label: month }));
+
+                // Group the data by room type
+                const groupedData = filteredData.reduce((acc, item) => {
+                    acc.push({
+                        value: item.talep_oranı.toString(),
+                        toolText: `<b>${item.talep_oranı}%</b> Doluluk ${roomType.name} on ${new Date(item.tarih).toLocaleString('default', { month: 'long', year: 'numeric' })} <br/> `
+                    });
+                    return acc;
+                }, []);
+
+                // Update the dataSource object
+                const updatedDataSource = {
+                    categories: [
+                        { category: processedMonths }
+                    ],
+                    dataset: [{ data: groupedData }]
+                };
+
+                // Merge the changes into the existing dataSource
+                myChart.setJSONData(Object.assign({}, myChart.getJSONData(), updatedDataSource));
+            })
+            .catch(error => console.error('Error:', error));
+    });
 });
