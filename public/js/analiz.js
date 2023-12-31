@@ -19,6 +19,8 @@ async function getComparisonData() {
 
     // Now you can use the data to update your charts
     // This will depend on what library you're using to create the charts
+
+    location.reload(); // Reload the page to update the charts
 }
 
 

@@ -220,76 +220,104 @@ const fiyatPerformans = (req, res) => {
 
     res.status(200).send('Update successful');
 };
+const queryPromise = (query, params) => {
+    return new Promise((resolve, reject) => {
+        dbConn.query(query, params, (err, result) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(result);
+            }
+        });
+    });
+};
+
 const karsilastirmaDoluluk = async (req, res) => {
     try {
-        const oda_id = req.query.oda_id; // Get oda_id from the request query
-        const updatedDataQuery = 'SELECT oda_id, tarih, eski_doluluk_orani AS oran, oda_fiyati AS fiyat FROM oda_doluluk_log_updated WHERE oda_doluluk_log_updated.oda_id = ?';
-
-        const updatedData = await dbQuery(updatedDataQuery, [oda_id]); // Pass oda_id as a parameter to dbQuery
-
-        res.json({
-            updatedData
-        });
+        const { oda_id } = req.params;
+        const result = await queryPromise(
+            `SELECT oda_id, tarih, eski_doluluk_orani AS oran, oda_fiyati AS fiyat FROM oda_doluluk_log_updated 
+            WHERE oda_doluluk_log_updated.oda_id = ?;`,
+            [oda_id]
+        );
+        res.json(result);
     } catch (error) {
-        res.status(500).json({ error: error.toString() });
+        res.status(500).json({ error: error.message });
     }
 };
 
 const karsilastirmaDoluluk1 = async (req, res) => {
     try {
-        const previousDataQuery = 'SELECT oda_id, tarih, eski_doluluk_orani AS oran, oda_fiyati AS fiyat FROM oda_doluluk_log_previous';
-        const previousData = await dbQuery(previousDataQuery);
-
-        res.json({
-            previousData
-        });
+        const { oda_id } = req.params;
+        const result = await queryPromise(
+            `SELECT oda_id, tarih, eski_doluluk_orani AS oran, oda_fiyati AS fiyat FROM oda_doluluk_log_previous 
+            WHERE oda_doluluk_log_previous.oda_id = ?;`,
+            [oda_id]
+        );
+        res.json(result);
     } catch (error) {
-        res.status(500).json({ error: error.toString() });
+        res.status(500).json({ error: error.message });
     }
 };
+
 const karsilastirmaIptal = async (req, res) => {
     try {
-        const updatedDataQuery = 'SELECT oda_id, tarih, iptal_miktari AS oran, oda_fiyati AS fiyat FROM oda_iptal_log_updated';
-        const previousDataQuery = 'SELECT oda_id, tarih, iptal_miktari AS oran, oda_fiyati AS fiyat FROM oda_iptal_log_previous';
-
-        const updatedData = await dbQuery(updatedDataQuery);
-        const previousData = await dbQuery(previousDataQuery);
-
-        res.json({
-            updatedData,
-            previousData
-        });
+        const { oda_id } = req.params;
+        const result = await queryPromise(
+            `SELECT oda_id, tarih, iptal_miktari AS oran, oda_fiyati AS fiyat FROM oda_iptal_log_updated 
+            WHERE oda_iptal_log_updated.oda_id = ?;`,
+            [oda_id]
+        );
+        res.json(result);
     } catch (error) {
-        res.status(500).json({ error: error.toString() });
+        res.status(500).json({ error: error.message });
+    }
+};
+
+const karsilastirmaIptal1 = async (req, res) => {
+    try {
+        const { oda_id } = req.params;
+        const result = await queryPromise(
+            `SELECT oda_id, tarih, iptal_miktari AS oran, oda_fiyati AS fiyat FROM oda_iptal_log_previous 
+            WHERE oda_iptal_log_previous.oda_id = ?;`,
+            [oda_id]
+        );
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 };
 
 const karsilastirmaTalep = async (req, res) => {
     try {
-        const updatedDataQuery = 'SELECT oda_id, tarih, talep_oranı AS oran, oda_fiyati AS fiyat FROM oda_talep_log_updated';
-        const previousDataQuery = 'SELECT oda_id, tarih, talep_oranı AS oran, oda_fiyati AS fiyat FROM oda_talep_log_previous';
-
-        const updatedData = await dbQuery(updatedDataQuery);
-        const previousData = await dbQuery(previousDataQuery);
-
-        res.json({
-            updatedData,
-            previousData
-        });
+        const { oda_id } = req.params;
+        const result = await queryPromise(
+            `SELECT oda_id, tarih, talep_oranı AS oran, oda_fiyati AS fiyat FROM oda_talep_log_updated 
+            WHERE oda_talep_log_updated.oda_id = ?;`,
+            [oda_id]
+        );
+        res.json(result);
     } catch (error) {
-        res.status(500).json({ error: error.toString() });
+        res.status(500).json({ error: error.message });
+    }
+};
+
+const karsilastirmaTalep1 = async (req, res) => {
+    try {
+        const { oda_id } = req.params;
+        const result = await queryPromise(
+            `SELECT oda_id, tarih, talep_oranı AS oran, oda_fiyati AS fiyat FROM oda_talep_log_previous 
+            WHERE oda_talep_log_previous.oda_id = ?;`,
+            [oda_id]
+        );
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 };
 
 
-const dbQuery = (query) => {
-    return new Promise((resolve, reject) => {
-        dbConn.query(query, (err, results) => {
-            if (err) reject(err);
-            else resolve(results);
-        });
-    });
-};
+
 
 module.exports = {
     dolulukOrani,
@@ -303,7 +331,9 @@ module.exports = {
     karsilastirmaDoluluk,
     karsilastirmaIptal,
     karsilastirmaTalep,
-    karsilastirmaDoluluk1
+    karsilastirmaDoluluk1,
+    karsilastirmaIptal1,
+    karsilastirmaTalep1
 
 
 }

@@ -25,15 +25,26 @@ const {fiyatPerformans} = require("../controllers/controller");
 router.post("/fiyatPerformans", fiyatPerformans);
 
 const {karsilastirmaDoluluk} = require("../controllers/controller");
-router.get("/karsilastirmaDoluluk", karsilastirmaDoluluk);
 
 const {karsilastirmaDoluluk1} = require("../controllers/controller");
-router.get("/karsilastirmaDoluluk1", karsilastirmaDoluluk1);
+router.get("/karsilastirmaDoluluk1/:oda_id", karsilastirmaDoluluk1);
+
+
+
+router.get("/karsilastirmaDoluluk/:oda_id", karsilastirmaDoluluk);
 
 const {karsilastirmaIptal} = require("../controllers/controller");
-router.get("/karsilastirmaIptal", karsilastirmaIptal);
+router.get("/karsilastirmaIptal/:oda_id", karsilastirmaIptal);
+
+const {karsilastirmaIptal1} = require("../controllers/controller");
+router.get("/karsilastirmaIptal1/:oda_id", karsilastirmaIptal1);
+
+
 
 const {karsilastirmaTalep} = require("../controllers/controller");
-router.get("/karsilastirmaTalep", karsilastirmaTalep);
+router.get("/karsilastirmaTalep/:oda_id", karsilastirmaTalep);
+
+const {karsilastirmaTalep1} = require("../controllers/controller");
+router.get("/karsilastirmaTalep1/:oda_id", karsilastirmaTalep1);
 
 module.exports = router;

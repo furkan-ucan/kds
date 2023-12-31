@@ -1,7 +1,7 @@
 // FusionCharts configuration for the first chart
-const chartConfig = {
+const chartConfig2 = {
     type: "msspline",
-    renderAt: "dolulukOraniKarsilastirma",
+    renderAt: "iptalOraniKarsilastirma",
     width: "100%",
     height: "400",
     dataFormat: "json",
@@ -25,9 +25,9 @@ const chartConfig = {
 };
 
 // FusionCharts configuration for the second chart
-const chartConfig1 = {
+const chartConfig3 = {
     type: "msspline",
-    renderAt: "dolulukOraniKarsilastirma1",
+    renderAt: "iptalOraniKarsilastirma1",
     width: "100%",
     height: "400",
     dataFormat: "json",
@@ -51,14 +51,14 @@ const chartConfig1 = {
 };
 
 // Initialize FusionCharts instances
-const chart = new FusionCharts(chartConfig);
-const chart1 = new FusionCharts(chartConfig1);
+const chart2 = new FusionCharts(chartConfig2);
+const chart3 = new FusionCharts(chartConfig3);
 
-function updateChart(selectedRoomType) {
+function updateChart1(selectedRoomType) {
     // Fetch data from the server based on the selected room type for the first chart
-    $.get(`http://localhost:3000/api/karsilastirmaDoluluk/${selectedRoomType}`, (data) => {
+    $.get(`http://localhost:3000/api/karsilastirmaIptal/${selectedRoomType}`, (data) => {
         // Update FusionCharts data source with the fetched data for the first chart
-        chart.setJSONData({
+        chart2.setJSONData({
             chart: chartConfig.dataSource.chart,
             categories: [{ category: data.map(item => ({ label: new Date(item.tarih).toLocaleDateString() })) }],
             dataset: [{ data: data.map(item => ({ value: item.oran})) }]
@@ -66,9 +66,9 @@ function updateChart(selectedRoomType) {
     });
 
     // Fetch data from the server based on the selected room type for the second chart
-    $.get(`http://localhost:3000/api/karsilastirmaDoluluk1/${selectedRoomType}`, (data) => {
+    $.get(`http://localhost:3000/api/karsilastirmaIptal1/${selectedRoomType}`, (data) => {
         // Update FusionCharts data source with the fetched data for the second chart
-        chart1.setJSONData({
+        chart3.setJSONData({
             chart: chartConfig1.dataSource.chart,
             categories: [{ category: data.map(item => ({ label: new Date(item.tarih).toLocaleDateString() })) }],
             dataset: [{ data: data.map(item => ({ value: item.oran})) }]
@@ -78,13 +78,13 @@ function updateChart(selectedRoomType) {
 // Event listener for the room selection dropdown
 $('#odaSec').change(function () {
     const selectedRoomType = $(this).val();
-    updateChart(selectedRoomType);
+    updateChart1(selectedRoomType);
 });
 
 // Initially, fetch and display data for the default room type
-const defaultRoomType = $('#odaSec').val();
-updateChart(defaultRoomType);
+const defaultRoomType1 = $('#odaSec').val();
+updateChart1(defaultRoomType1);
 
 // Render the FusionCharts
-chart.render();
-chart1.render();
+chart2.render();
+chart3.render();
