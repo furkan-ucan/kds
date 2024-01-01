@@ -15,8 +15,10 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.1/perfect-scrollbar.min.js"></script>
     <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
     <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.candy.js"></script>
-    <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.msspline.js"></script>
     <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 
     <style>
         .main-container {
@@ -33,6 +35,11 @@
             width: 80%;
             height: 300px;
             /* İhtiyaca göre ayarlayabilirsiniz */
+        }
+
+
+        .metric-card {
+            margin-top: 1rem;
         }
     </style>
 
@@ -122,7 +129,7 @@
                             <div class="col-lg-6 mb-lg-0 mb-4">
                                 <div class="card">
                                     <div class="card-header pb-0">
-                                        <h6> İptal Oranı</h6>
+                                        <h6>Geliş Yerleri </h6>
                                     </div>
                                     <div class="card-body p-3">
                                         <div id="chart-container2" class="chart"></div>
@@ -132,39 +139,46 @@
                         </div>
 
                         <div class="row mt-4">
-                            <div class="col-12">
+                            <div class="col-lg-3 mb-lg-0 mb-4">
                                 <div class="card">
-                                    <div class="card-header card-header-primary">
-                                        <h4 class="card-title">Müşteri Tablosu</h4>
-                                        <p class="card-category">Burada müşterilerin detayları listelenmektedir</p>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead class=" text-primary">
-                                                    <th>#</th>
-                                                    <th>Ad</th>
-                                                    <th>Soyad</th>
-                                                    <th>Cinsiyet</th>
-                                                    <th>Ülke</th>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Ali</td>
-                                                        <td>Veli</td>
-                                                        <td>Erkek</td>
-                                                        <td>Türkiye</td>
-                                                    </tr>
-                                                    <!-- Diğer müşteri bilgileri -->
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                    <h3>Oda Hizmeti</h3>
+                                    <div id="customGauge0" class="metric-card"></div>
                                 </div>
                             </div>
+                            <div class="col-lg-3 mb-lg-0 mb-4">
+                                <div class="card">
+                                    <h3>Etkinlik Hizmeti</h3>
+                                    <div id="customGauge1" class="metric-card"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 mb-lg-0 mb-4">
+                                <div class="card">
+                                    <h3>Personel Hizmeti</h3>
+                                    <div id="customGauge2" class="metric-card"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 mb-lg-0 mb-4">
+                                <div class="card">
+                                    <h3>Temizlik Hizmeti</h3>
+                                    <div id="customGauge3" class="metric-card"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 text-center mt-4">
+                                <div class="input-container">
+                                    <select id="metricSelect">
+                                        <option value="0">Metric 0</option>
+                                        <option value="1">Metric 1</option>
+                                        <option value="2">Metric 2</option>
+                                        <option value="3">Metric 3</option>
+                                    </select>
+                                    <h3>Kalan Bakiye: <span id="moneyLeft">10</span></h3>
+                                    <input id="amountInput" type="number" min="0" placeholder="Enter amount">
+                                    <button id="addMoneyButton" class="btn btn-primary">Add Money</button>
+                                    <button id="subtractMoneyButton" class="btn btn-primary">Subtract Money</button>
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
                 </section>
             </div>
 
@@ -178,7 +192,183 @@
     <script src="/node_modules/material-dashboard/assets/js/material-dashboard.js"></script>
     <script src="/js/memnuniyet.js"></script>
     <script src="/js/chart.js"></script>
-    <script src="/js/sankey.js"></script>
+    <!-- <script src="/js/sankey.js"></script> -->
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', (event) => {
+        google.charts.load('current', { 'packages': ['gauge'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var initialMoney = 10; // Başlangıçta sahip olunan para
+            var moneyLeft = initialMoney;
+
+            // Grafiklerin başlangıç değerleri
+            var initialValues = [7, 8, 6, 5];
+            var currentValues = [...initialValues]; // Mevcut değerler, başlangıçta başlangıç değerlerine eşittir
+
+            var options = {
+                width: 400,
+                height: 300,
+                redFrom: 0,
+                redTo: 6,
+                yellowFrom: 6,
+                yellowTo: 8,
+                greenFrom: 8,
+                greenTo: 10,
+                max: 10,
+                minorTicks: 1,
+                forceIFrame: false,
+                animation: {
+                    duration: 0
+                }
+            };
+
+            // Her bir grafiği çizmek için bir fonksiyon
+            function drawChartWithData(chartId, data) {
+                console.log('drawChartWithData', chartId, data);
+                var chart = new google.visualization.Gauge(document.getElementById(chartId));
+                chart.draw(data, options);
+            }
+
+            // Grafik verilerini güncellemek için bir fonksiyon
+            function updateChartValues(chartId, amount) {
+                // Mevcut değerlere para ekleyin
+                if (!isNaN(currentValues[chartId]) && !isNaN(amount)) {
+                    currentValues[chartId] += amount;
+                } else {
+                    console.error('Invalid value: currentValues[' + chartId + '] = ' + currentValues[chartId] + ', amount = ' + amount);
+                    return;
+                }
+
+                // Eğer değer alt sınırdan küçükse alt sınıra ayarlayın
+                if (currentValues[chartId] < options.redFrom) {
+                    currentValues[chartId] = options.redFrom;
+                }
+
+                // Eğer değer üst sınırdan büyükse üst sınıra ayarlayın
+                if (currentValues[chartId] > options.greenTo) {
+                    currentValues[chartId] = options.greenTo;
+                }
+
+                // Yeni veri tablosunu oluşturun ve grafiği güncelleyin
+                var newData = google.visualization.arrayToDataTable([
+                    ['', 'Value'],
+                    ['', currentValues[chartId]],
+                ]);
+
+                drawChartWithData('customGauge' + chartId, newData);
+
+                // Kalan parayı güncelleyin
+                moneyLeft -= amount;
+                document.getElementById('moneyLeft').textContent = moneyLeft.toFixed(2);
+            }
+
+            // Para çıkarmak için bir fonksiyon
+            function subtractMoney(chartId, amount) {
+                // Mevcut değerlerden para çıkarın
+                if (!isNaN(currentValues[chartId]) && !isNaN(amount)) {
+                    currentValues[chartId] -= amount;
+                } else {
+                    console.error('Invalid value: currentValues[' + chartId + '] = ' + currentValues[chartId] + ', amount = ' + amount);
+                    return;
+                }
+
+                // Eğer değer alt sınırdan küçükse alt sınıra ayarlayın
+                if (currentValues[chartId] < options.redFrom) {
+                    currentValues[chartId] = options.redFrom;
+                }
+
+                // Eğer değer üst sınırdan büyükse üst sınıra ayarlayın
+                if (currentValues[chartId] > options.greenTo) {
+                    currentValues[chartId] = options.greenTo;
+                }
+
+                // Yeni veri tablosunu oluşturun ve grafiği güncelleyin
+                var newData = google.visualization.arrayToDataTable([
+                    ['', 'Value'],
+                    ['', currentValues[chartId]],
+                ]);
+
+                drawChartWithData('customGauge' + chartId, newData);
+
+                // Kalan parayı güncelleyin
+                moneyLeft += amount;
+                document.getElementById('moneyLeft').textContent = moneyLeft.toFixed(2);
+            }
+
+            // Başlangıçta grafikleri çiz
+            for (var i = 0; i < initialValues.length; i++) {
+                var initialData = google.visualization.arrayToDataTable([
+                    ['', 'Value'],
+                    ['', initialValues[i]],
+                ]);
+
+                drawChartWithData('customGauge' + i, initialData);
+            }
+
+
+            function addMoney() {
+                var amountString = prompt('Lütfen eklemek istediğiniz miktarı girin:', '0');
+
+                // Kullanıcının girdisini sayıya dönüştürün
+                var amount = parseFloat(amountString);
+
+                // Geçerli bir miktar girildiğinden emin olun
+                if (!isNaN(amount) && amount > 0 && moneyLeft >= amount) {
+                    // Her grafik için miktarı güncelle
+                    for (var i = 0; i < currentValues.length; i++) {
+                        updateChartValues('customGauge' + i, amount / currentValues.length);
+                    }
+                } else {
+                    alert('Geçersiz miktar veya yetersiz bakiye!');
+                }
+            }
+
+
+
+            // Para eklemek için bir buton ekleyin
+            var addButton = document.getElementById('addMoneyButton');
+            addButton.addEventListener('click', function () {
+                // Kullanıcı hangi metrik grafiğine para eklemek istediğini seçsin
+                var selectedChartId = document.getElementById('metricSelect').value;
+
+                var amountString = document.getElementById('amountInput').value;
+
+                // Kullanıcının girdisini sayıya dönüştürün
+                var amount = parseFloat(amountString);
+
+                // Geçerli bir miktar girildiğinden emin olun
+                if (!isNaN(amount) && amount > 0 && moneyLeft >= amount) {
+                    // Seçilen grafiği güncelle
+                    updateChartValues(selectedChartId, amount);
+                } else {
+                    alert('Geçersiz miktar veya yetersiz bakiye!');
+                }
+            });
+
+            // Para çıkarmak için bir buton ekleyin
+            var subtractButton = document.getElementById('subtractMoneyButton');
+            subtractButton.addEventListener('click', function () {
+                // Kullanıcı hangi metrik grafiğinden para çıkarmak istediğini seçsin
+                var selectedChartId = document.getElementById('metricSelect').value;
+
+                var amountString = document.getElementById('amountInput').value;
+
+                // Kullanıcının girdisini sayıya dönüştürün
+                var amount = parseFloat(amountString);
+
+                // Geçerli bir miktar girildiğinden emin olun
+                if (!isNaN(amount) && amount > 0 && currentValues[selectedChartId] >= amount) {
+                    // Seçilen grafiği güncelle
+                    subtractMoney(selectedChartId, amount);
+                } else {
+                    alert('Geçersiz miktar veya yetersiz bakiye!');
+                }
+            });
+
+        }
+    });
+    </script>
 </body>
 
 </html>
