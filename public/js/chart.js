@@ -1,45 +1,59 @@
-const dataSource = {
-    chart: {
-        caption: "Müşteri Sayısı (Ülkelere ve Şehirlere Göre)",
-        subcaption: "Otelimize gelen müşterilerin ülkelerine ve şehirlerine göre dağılımı",
-        theme: "candy",
-        numbersuffix: " kişi",
-        nodewidth: 0,
-        nodelinkpadding: 3,
-        linkcolor: "blend",
-        linkcurvature: 0.6,
-        linkalpha: 40
-    },
-    nodes: [
-        { label: "Almanya" },
-        { label: "Fransa" },
-        { label: "Amerika" },
-        // Diğer ülkeler...
-        { label: "Türkiye" },
-        { label: "İstanbul" },
-        { label: "Ankara" },
-        { label: "İzmir" },
-        // Diğer Türkiye şehirleri...
-    ],
-    links: [
-        { from: "Almanya", to: "Türkiye", value: 100 },
-        { from: "Fransa", to: "Türkiye", value: 80 },
-        { from: "Amerika", to: "Türkiye", value: 70 },
-        // Diğer ülkelerden gelen müşteri sayıları...
-        { to: "Türkiye", from: "İstanbul", value: 150 },
-        { to: "Türkiye", from: "Ankara", value: 120 },
-        { to: "Türkiye", from: "İzmir", value: 100 },
-        // Diğer Türkiye şehirlerine gelen müşteri sayıları...
-    ]
-};
-
-FusionCharts.ready(function () {
+FusionCharts.ready(function() {
     var myChart = new FusionCharts({
-        type: "sankey",
-        renderAt: "chart-container2",
-        width: "100%",
-        height: "100%",
+        type: "angulargauge",
+        renderAt: "chart-container",
+        width: "700",
+        height: "300",
         dataFormat: "json",
-        dataSource
+        dataSource: {
+            chart: {
+                caption: "Müşteri Memnuniyeti Skoru",
+                lowerlimit: "0",
+                upperlimit: "100",
+                showvalue: "1",
+                numbersuffix: "%",
+                theme: "candy"
+            },
+            colorrange: {
+                color: [
+                    {
+                        minvalue: "0",
+                        maxvalue: "50",
+                        code: "#F2726F"
+                    },
+                    {
+                        minvalue: "50",
+                        maxvalue: "75",
+                        code: "#FFC533"
+                    },
+                    {
+                        minvalue: "75",
+                        maxvalue: "100",
+                        code: "#62B58F"
+                    }
+                ]
+            },
+            dials: {
+                dial: [
+                    {
+                        value: "71", // Müşteri memnuniyeti skorunuzu buraya girin
+                        tooltext: "<b>9%</b> hedefin altında"
+                    }
+                ]
+            },
+            trendpoints: {
+                point: [
+                    {
+                        startvalue: "80",
+                        displayvalue: "Hedef",
+                        thickness: "2",
+                        color: "#E15A26",
+                        usemarker: "1",
+                        markerbordercolor: "#E15A26",
+                        markertooltext: "80%"
+                    }
+                ]
+            }
+        }
     }).render();
 });

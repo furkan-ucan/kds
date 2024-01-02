@@ -47,4 +47,5 @@ router.get("/karsilastirmaTalep/:oda_id", karsilastirmaTalep);
 const {karsilastirmaTalep1} = require("../controllers/controller");
 router.get("/karsilastirmaTalep1/:oda_id", karsilastirmaTalep1);
 
+
 module.exports = router;

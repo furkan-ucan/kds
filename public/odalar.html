@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Dashboard 2</title>
+    <!-- Core JS Files -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.1/perfect-scrollbar.min.js"></script>
+    <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+    <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+
+    <!-- Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <!-- Material Dashboard 2 CSS -->
+    <link rel="stylesheet"
+        href="https://demos.creative-tim.com/material-dashboard/assets/css/material-dashboard.min.css">
+
+    <!-- Material Dashboard 2 JS -->
+    <script src="https://demos.creative-tim.com/material-dashboard/assets/js/material-dashboard.min.js"></script>
+
+</head>
+
+<style>
+    .dollar-sign {
+        color: green;
+    }
+</style>
+
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <aside
+        class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"
+        id="sidenav-main">
+        <div class="sidenav-header">
+            <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+                aria-hidden="true" id="iconSidenav"></i>
+            <a class="navbar-brand m-0" href="/index.html">
+                <span class="ms-1 font-weight-bold text-white">Otel İçin KDS</span>
+            </a>
+        </div>
+        <hr class="horizontal light mt-0 mb-2">
+        <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="/odalar.html">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-tachometer-alt opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Oda Bilgileri</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="/musteri.html">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-table opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Müşteriler</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="/analiz.html">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-table opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Analiz</span>
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
+        <div class="wrapper">
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-12 text-center">
+                                <h1>İstatistikler</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <!-- Statistic Cards -->
+                        <div class="row mt-4">
+                            <div id="talepCarousel" class="carousel slide col-lg-4" data-ride="carousel">
+                                <div class="carousel-inner">
+
+                                    <div class="carousel-item active">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-header p-3 pt-2">
+                                                    <div
+                                                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl  position-absolute">
+                                                        <i class="fas fa-arrow-up"></i>
+                                                    </div>
+                                                    <div class="text-end pt-1">
+                                                        <p class="text-sm mb-0 text-capitalize">Standart Oda Talep Oranı
+                                                        </p>
+                                                        <h3 class="card-title">66%</h3>
+                                                    </div>
+                                                </div>
+                                                <hr class="dark horizontal my-0">
+                                                <div class="card-footer p-3">
+                                                    <p class="mb-0"><span
+                                                            class="text-success text-sm font-weight-bolder">+33%</span>
+                                                        than last month
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-header p-3 pt-2">
+                                                    <div
+                                                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl  position-absolute">
+                                                        <i class="fas fa-arrow-up"></i>
+                                                    </div>
+                                                    <div class="text-end pt-1">
+                                                        <p class="text-sm mb-0 text-capitalize">Suit Oda Talep Oranı</p>
+                                                        <h3 class="card-title">50%</h3>
+                                                    </div>
+                                                </div>
+                                                <hr class="dark horizontal my-0">
+                                                <div class="card-footer p-3">
+                                                    <p class="mb-0"><span
+                                                            class="text-success text-sm font-weight-bolder">+4%</span>
+                                                        than last month
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-header p-3 pt-2">
+                                                    <div
+                                                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl  position-absolute">
+                                                        <i class="fas fa-arrow-up"></i>
+                                                    </div>
+                                                    <div class="text-end pt-1">
+                                                        <p class="text-sm mb-0 text-capitalize">Deluxe Oda Talep Oranı
+                                                        </p>
+                                                        <h3 id="musteriSayisi" class="card-title">56%</h3>
+                                                    </div>
+                                                </div>
+                                                <hr class="dark horizontal my-0">
+                                                <div class="card-footer p-3">
+                                                    <p class="mb-0"><span
+                                                            class="text-success text-sm font-weight-bolder">+6%
+                                                        </span>than last month
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-header p-3 pt-2">
+                                                    <div
+                                                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl  position-absolute">
+                                                        <i class="fas fa-arrow-up"></i>
+                                                    </div>
+                                                    <div class="text-end pt-1">
+                                                        <p class="text-sm mb-0 text-capitalize">Aile Oda Talep Oranı</p>
+                                                        <h3 id="musteriSayisi" class="card-title">80%</h3>
+                                                    </div>
+                                                </div>
+                                                <hr class="dark horizontal my-0">
+                                                <div class="card-footer p-3">
+                                                    <p class="mb-0"><span
+                                                            class="text-success text-sm font-weight-bolder">+10%
+                                                        </span>than last month
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-header p-3 pt-2">
+                                                    <div
+                                                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl  position-absolute">
+                                                        <i class="fas fa-arrow-up"></i>
+                                                    </div>
+                                                    <div class="text-end pt-1">
+                                                        <p class="text-sm mb-0 text-capitalize">Ekonomik Oda Talep Oranı
+                                                        </p>
+                                                        <h3 id="musteriSayisi" class="card-title">87%</h3>
+                                                    </div>
+                                                </div>
+                                                <hr class="dark horizontal my-0">
+                                                <div class="card-footer p-3">
+                                                    <p class="mb-0"><span
+                                                            class="text-success text-sm font-weight-bolder">+20%
+                                                        </span>than last month
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Önceki kartı gösteren kontrol düğmesi -->
+                                    <a class="carousel-control-prev" href="#talepCarousel" role="button"
+                                        data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+
+                                    <!-- Sonraki kartı gösteren kontrol düğmesi -->
+                                    <a class="carousel-control-next" href="#talepCarousel" role="button"
+                                        data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Card 2 -->
+                            <div id="dolulukCarousel" class="carousel slide col-lg-4" data-ride="carousel">
+                                <div class="carousel-inner">
+
+                                    <div class="carousel-item active">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-header p-3 pt-2">
+                                                    <div
+                                                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl  position-absolute">
+                                                        <i class="fas fa-users"></i>
+                                                    </div>
+                                                    <div class="text-end pt-1">
+                                                        <p class="text-sm mb-0 text-capitalize">Standart Oda Şimdiki
+                                                            Doluluk Oranı</p>
+                                                        <h3 id="musteriSayisi" class="card-title">75%</h3>
+                                                    </div>
+                                                </div>
+                                                <hr class="dark horizontal my-0">
+                                                <div class="card-footer p-3">
+                                                    <p class="mb-0"><span
+                                                            class="text-success text-sm font-weight-bolder">+10%
+                                                        </span>than last month
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-header p-3 pt-2">
+                                                    <div
+                                                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl  position-absolute">
+                                                        <i class="fas fa-users"></i>
+                                                    </div>
+                                                    <div class="text-end pt-1">
+                                                        <p class="text-sm mb-0 text-capitalize">Suit Oda Şimdiki Doluluk
+                                                            Oranı</p>
+                                                        <h3 id="musteriSayisi" class="card-title">65%</h3>
+                                                    </div>
+                                                </div>
+                                                <hr class="dark horizontal my-0">
+                                                <div class="card-footer p-3">
+                                                    <p class="mb-0"><span
+                                                            class="text-success text-sm font-weight-bolder">+6%
+                                                        </span>than last month
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-header p-3 pt-2">
+                                                    <div
+                                                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl  position-absolute">
+                                                        <i class="fas fa-users"></i>
+                                                    </div>
+                                                    <div class="text-end pt-1">
+                                                        <p class="text-sm mb-0 text-capitalize">Deluxe Oda Şimdiki
+                                                            Doluluk Oranı</p>
+                                                        <h3 id="musteriSayisi" class="card-title">54%</h3>
+                                                    </div>
+                                                </div>
+                                                <hr class="dark horizontal my-0">
+                                                <div class="card-footer p-3">
+                                                    <p class="mb-0"><span
+                                                            class="text-success text-sm font-weight-bolder">+3%
+                                                        </span>than last month
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-header p-3 pt-2">
+                                                    <div
+                                                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl  position-absolute">
+                                                        <i class="fas fa-users"></i>
+                                                    </div>
+                                                    <div class="text-end pt-1">
+                                                        <p class="text-sm mb-0 text-capitalize">Aile Oda Şimdiki Doluluk
+                                                            Oranı</p>
+                                                        <h3 id="musteriSayisi" class="card-title">68%</h3>
+                                                    </div>
+                                                </div>
+                                                <hr class="dark horizontal my-0">
+                                                <div class="card-footer p-3">
+                                                    <p class="mb-0"><span
+                                                            class="text-success text-sm font-weight-bolder">+11%
+                                                        </span>than last month
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-header p-3 pt-2">
+                                                    <div
+                                                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl  position-absolute">
+                                                        <i class="fas fa-users"></i>
+                                                    </div>
+                                                    <div class="text-end pt-1">
+                                                        <p class="text-sm mb-0 text-capitalize">Ekonomik Oda Şimdiki
+                                                            Doluluk Oranı</p>
+                                                        <h3 id="musteriSayisi" class="card-title">74%</h3>
+                                                    </div>
+                                                </div>
+                                                <hr class="dark horizontal my-0">
+                                                <div class="card-footer p-3">
+                                                    <p class="mb-0"><span
+                                                            class="text-success text-sm font-weight-bolder">+16%
+                                                        </span>than last month
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Carousel kontrol düğmeleri -->
+                                    <a class="carousel-control-prev" href="#dolulukCarousel" role="button"
+                                        data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#dolulukCarousel" role="button"
+                                        data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Card 3 -->
+                            <div id="iptalCarousel" class="carousel slide col-lg-4 " data-ride="carousel">
+                                <div class="carousel-inner">
+
+                                    <div class="carousel-item active">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-header p-3 pt-2">
+                                                    <div
+                                                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl  position-absolute">
+                                                        <i class="fas fa-times-circle"></i>
+                                                    </div>
+                                                    <div class="text-end pt-1">
+                                                        <p class="text-sm mb-0 text-capitalize">Standart Oda İptal Oranı
+                                                        </p>
+                                                        <h3 id="musteriSayisi" class="card-title">30%</h3>
+                                                    </div>
+                                                </div>
+                                                <hr class="dark horizontal my-0">
+                                                <div class="card-footer p-3">
+                                                    <p class="mb-0"><span
+                                                            class="text-success text-sm font-weight-bolder">+10%
+                                                        </span>than last month
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-header p-3 pt-2">
+                                                    <div
+                                                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl  position-absolute">
+                                                        <i class="fas fa-times-circle"></i>
+                                                    </div>
+                                                    <div class="text-end pt-1">
+                                                        <p class="text-sm mb-0 text-capitalize">Suit Oda İptal Oranı</p>
+                                                        <h3 id="musteriSayisi" class="card-title">33%</h3>
+                                                    </div>
+                                                </div>
+                                                <hr class="dark horizontal my-0">
+                                                <div class="card-footer p-3">
+                                                    <p class="mb-0"><span
+                                                            class="text-success text-sm font-weight-bolder">+11%
+                                                        </span>than last month
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-header p-3 pt-2">
+                                                    <div
+                                                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl  position-absolute">
+                                                        <i class="fas fa-times-circle"></i>
+                                                    </div>
+                                                    <div class="text-end pt-1">
+                                                        <p class="text-sm mb-0 text-capitalize">Deluxe Oda İptal Oranı
+                                                        </p>
+                                                        <h3 id="musteriSayisi" class="card-title">33%</h3>
+                                                    </div>
+                                                </div>
+                                                <hr class="dark horizontal my-0">
+                                                <div class="card-footer p-3">
+                                                    <p class="mb-0"><span
+                                                            class="text-success text-sm font-weight-bolder">+6%
+                                                        </span>than last month
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-header p-3 pt-2">
+                                                    <div
+                                                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl  position-absolute">
+                                                        <i class="fas fa-times-circle"></i>
+                                                    </div>
+                                                    <div class="text-end pt-1">
+                                                        <p class="text-sm mb-0 text-capitalize">Aile Oda İptal Oranı</p>
+                                                        <h3 id="musteriSayisi" class="card-title">22%</h3>
+                                                    </div>
+                                                </div>
+                                                <hr class="dark horizontal my-0">
+                                                <div class="card-footer p-3">
+                                                    <p class="mb-0"><span
+                                                            class="text-success text-sm font-weight-bolder">+3%
+                                                        </span>than last month
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="col-lg-12 mb-lg-0 mb-4">
+                                            <div class="card">
+                                                <div class="card-header p-3 pt-2">
+                                                    <div
+                                                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl  position-absolute">
+                                                        <i class="fas fa-times-circle"></i>
+                                                    </div>
+                                                    <div class="text-end pt-1">
+                                                        <p class="text-sm mb-0 text-capitalize">Ekonomik Oda İptal Oranı
+                                                        </p>
+                                                        <h3 id="musteriSayisi" class="card-title">7%</h3>
+                                                    </div>
+                                                </div>
+                                                <hr class="dark horizontal my-0">
+                                                <div class="card-footer p-3">
+                                                    <p class="mb-0"><span
+                                                            class="text-success text-sm font-weight-bolder">+2%
+                                                        </span>than last month
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Carousel kontrol düğmeleri -->
+                                    <a class="carousel-control-prev" href="#iptalCarousel" role="button"
+                                        data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#iptalCarousel" role="button"
+                                        data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header card-header-primary">
+                                        <h4 class="card-title ">Sample Table</h4>
+
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead class="text-primary">
+                                                    <th>Oda ADI</th>
+                                                    <th>Güncel Fiyat</th>
+                                                    <th>Gelir</th>
+                                                    <th>Not</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Standart Oda</td>
+                                                        <td>150</td>
+                                                        <td><span class="dollar-sign">$</span> 46,632</td>
+                                                        <td>john@example.com</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Suit Oda</td>
+                                                        <td>350</td>
+                                                        <td><span class="dollar-sign">$</span> 68,738</td>
+                                                        <td>jane@example.com</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Deluxe Oda</td>
+                                                        <td>250</td>
+                                                        <td><span class="dollar-sign">$</span> 57,741</td>
+                                                        <td>jane</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Aile Odası</td>
+                                                        <td>300</td>
+                                                        <td><span class="dollar-sign">$</span> 67,369</td>                                                        <td>jane</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Ekonomik Oda</td>
+                                                        <td>100</td>
+                                                        <td><span class="dollar-sign">$</span> 74,233</td>                                                        <td>jane</td>
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                </section>
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </main>
+
+</body>
+
+
+
+</html>

@@ -218,7 +218,7 @@ const fiyatPerformans = (req, res) => {
         });
     });
 
-    res.status(200).send('Update successful');
+    res.json({ message: 'Update successful' });
 };
 const queryPromise = (query, params) => {
     return new Promise((resolve, reject) => {
@@ -315,6 +315,7 @@ const karsilastirmaTalep1 = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
 
 
 

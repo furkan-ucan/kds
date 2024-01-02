@@ -7,9 +7,9 @@ const chartConfig4 = {
     dataFormat: "json",
     dataSource: {
         chart: {
-            caption: `Gelecek 12 Tahmini Doluluk Oranı `,
-            yaxisname: "# of İptal",
-            subcaption: "Son hafta",
+            caption: `Gelecek 12 Tahmini Talep Oranı `,
+            yaxisname: "# of Talep",
+            subcaption: "Eski Fiyat",
             numdivlines: "3",
             showvalues: "0",
             legenditemfontsize: "15",
@@ -33,9 +33,9 @@ const chartConfig5 = {
     dataFormat: "json",
     dataSource: {
         chart: {
-            caption: "Gelecek 12 Tahmini İptal Oranı", // Adjust the caption as needed
-            yaxisname: "# of İptal",
-            subcaption: "Son hafta",
+            caption: "Gelecek 12 Tahmini Talep Oranı", // Adjust the caption as needed
+            yaxisname: "# of Talep",
+            subcaption: "Güncel Fiyat",
             numdivlines: "3",
             showvalues: "0",
             legenditemfontsize: "15",
@@ -59,7 +59,7 @@ function updateChart2(selectedRoomType) {
     $.get(`http://localhost:3000/api/karsilastirmaTalep/${selectedRoomType}`, (data) => {
         // Update FusionCharts data source with the fetched data for the first chart
         chart4.setJSONData({
-            chart: chartConfig.dataSource.chart,
+            chart: chartConfig4.dataSource.chart,
             categories: [{ category: data.map(item => ({ label: new Date(item.tarih).toLocaleDateString() })) }],
             dataset: [{ data: data.map(item => ({ value: item.oran})) }]
         });
@@ -69,7 +69,7 @@ function updateChart2(selectedRoomType) {
     $.get(`http://localhost:3000/api/karsilastirmaTalep1/${selectedRoomType}`, (data) => {
         // Update FusionCharts data source with the fetched data for the second chart
         chart5.setJSONData({
-            chart: chartConfig1.dataSource.chart,
+            chart: chartConfig5.dataSource.chart,
             categories: [{ category: data.map(item => ({ label: new Date(item.tarih).toLocaleDateString() })) }],
             dataset: [{ data: data.map(item => ({ value: item.oran})) }]
         });

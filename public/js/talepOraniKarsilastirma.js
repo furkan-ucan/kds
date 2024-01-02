@@ -2,7 +2,7 @@ const dataSource2 = {
     chart: {
         caption: "Talep Oranları Karşılaştırması",
         yaxisname: "# of Talepler",
-        subcaption: "Son hafta",
+        subcaption: "Son Sene",
         numdivlines: "3",
         showvalues: "0",
         legenditemfontsize: "15",
@@ -14,63 +14,91 @@ const dataSource2 = {
     categories: [
         {
             category: [
-                { label: "Ocak" },
-                { label: "Şubat" },
-                { label: "Mart" },
-                { label: "Nisan" },
-                { label: "Mayıs" },
-                { label: "Haziran" },
-                { label: "Temmuz" }
+                { label: "2023-Ocak" },
+                { label: "2023-Şubat" },
+                { label: "2023-Mart" },
+                { label: "2023-Nisan"},
+                { label: "2023-Mayıs" },
+                { label: "2023-Haziran" },
+                { label: "2023-Temmuz" },
+                { label: "2023-Ağustos" },
+                { label: "2023-Eylül" },
+                { label: "2023-Ekim" },
+                { label: "2023-Kasım" },
+                { label: "2023-Aralık" },
             ]
         }
     ],
     dataset: [
         {
-            seriesname: "Otel 1",
+            seriesname: "My Hotel",
             data: [
-                { value: "15" },
-                { value: "10" },
-                { value: "12" },
-                { value: "8" },
-                { value: "6" },
-                { value: "4" },
-                { value: "5" }
+                { value: "65" },
+                { value: "67" },
+                { value: "68" },
+                { value: "70" },
+                { value: "69" },
+                { value: "66" },
+                { value: "68" },
+                { value: "70" },
+                { value: "70" },
+                { value: "70" },
+                { value: "71" },
+                { value: "72" }, // 2022-Ocak
+                
             ]
         },
         {
             seriesname: "Otel 2",
             data: [
-                { value: "10" },
-                { value: "8" },
-                { value: "15" },
-                { value: "5" },
-                { value: "7" },
-                { value: "10" },
-                { value: "6" }
+                { value: "60" },
+                { value: "63" },
+                { value: "62" },
+                { value: "64" },
+                { value: "70" },
+                { value: "72" },
+                { value: "72" },
+                { value: "74" }, 
+                { value: "72" },
+                { value: "68" }, 
+                { value: "70" } ,
+                { value: "72" }  
+            
             ]
         },
         {
             seriesname: "Otel 3",
             data: [
-                { value: "20" },
-                { value: "18" },
-                { value: "22" },
-                { value: "15" },
-                { value: "16" },
-                { value: "14" },
-                { value: "17" }
+                { value: "58" },
+                { value: "60" },
+                { value: "65" },
+                { value: "66" },
+                { value: "70" },
+                { value: "72" },
+                { value: "72" },
+                { value: "75" },
+                { value: "74" } ,
+                { value: "72" },
+                { value: "70" },
+                { value: "68" }
+               
             ]
         },
         {
             seriesname: "Otel 4",
             data: [
-                { value: "25" },
-                { value: "20" },
-                { value: "23" },
-                { value: "19" },
-                { value: "21" },
-                { value: "22" },
-                { value: "24" }
+                { value: "66" },
+                { value: "69" },
+                { value: "69" },
+                { value: "70" },
+                { value: "72" },
+                { value: "77" },
+                { value: "78" },
+                { value: "78" }, 
+                { value: "80" }, 
+                { value: "82" },
+                { value: "82" },
+                { value: "82" }
             ]
         }
     ]

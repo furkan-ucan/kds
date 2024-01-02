@@ -21,25 +21,9 @@
 
 
     <style>
-        .main-container {
-            display: flex !important;
-        }
-
-        .content-wrapper {
-            flex-grow: 1 !important;
-            padding: 20px;
-        }
-
-        #chart-container,
-        #chart-container2 {
-            width: 80%;
-            height: 300px;
-            /* İhtiyaca göre ayarlayabilirsiniz */
-        }
-
-
         .metric-card {
-            margin-top: 1rem;
+            margin: auto;
+            height: 350;
         }
     </style>
 
@@ -47,53 +31,46 @@
 
 <body>
     <aside
-        class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"
-        id="sidenav-main">
-        <div class="sidenav-header">
-            <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-                aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href="/index.html">
-                <span class="ms-1 font-weight-bold text-white">Otel İçin KDS</span>
-            </a>
-        </div>
-        <hr class="horizontal light mt-0 mb-2">
-        <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link text-white " href="../pages/dashboard.html">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fas fa-chart-pie opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Doluluk Oranları</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " href="../pages/tables.html">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fas fa-times-circle opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">İptal Oranları</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " href="../pages/tables.html">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fas fa-check-circle opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Onaylanan Talepler</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " href="../pages/tables.html">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fas fa-users opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Müşteriler</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </aside>
+    class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"
+    id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+        aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href="/index.html">
+        <span class="ms-1 font-weight-bold text-white">Otel İçin KDS</span>
+      </a>
+    </div>
+    <hr class="horizontal light mt-0 mb-2">
+    <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/odalar.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fas fa-tachometer-alt opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Oda Bilgileri</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/musteri.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fas fa-table opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Müşteriler</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/analiz.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fas fa-table opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Analiz</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </aside>
 
 
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
@@ -117,9 +94,6 @@
                         <div class="row mt-4">
                             <div class="col-lg-6 mb-lg-0 mb-4">
                                 <div class="card">
-                                    <div class="card-header pb-0">
-                                        <h6> Doluluk Oranı</h6>
-                                    </div>
                                     <div class="card-body p-3">
                                         <div id="chart-container" class="chart"></div>
                                     </div>
@@ -128,57 +102,92 @@
 
                             <div class="col-lg-6 mb-lg-0 mb-4">
                                 <div class="card">
-                                    <div class="card-header pb-0">
-                                        <h6>Geliş Yerleri </h6>
-                                    </div>
                                     <div class="card-body p-3">
                                         <div id="chart-container2" class="chart"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-lg-6 text-center mt-4">
+                            <div class="input-container">
+                                <select id="metricSelect">
+                                    <option > Hizmet seç</option>
+                                    <option value="0">Oda Hizmeti</option>
+                                    <option value="1">Yemek Hizmeti</option>
+                                    <option value="2">Personel Hizmeti</option>
+                                    <option value="3">Etkinlik Hizmeti</option>
+                                    <option value="4">Hepsini Seç</option>
+                                </select>
+                                <select  id="para">
+                                    <option value="0">%20 arttır</option>
+                                    <option value="1">%50 arttır</option>
+                                    <option value="2">%20 azalt</option>
+                                    <option value="3">%50 azalt</option>
+                                </select>
+                                <button id="btn" class="btn btn-primary">Gönder</button>
+                            </div>
+                        </div>
 
                         <div class="row mt-4">
-                            <div class="col-lg-3 mb-lg-0 mb-4">
+                            <div class="col-lg-6 mb-lg-0 mb-4">
                                 <div class="card">
                                     <h3>Oda Hizmeti</h3>
                                     <div id="customGauge0" class="metric-card"></div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 mb-lg-0 mb-4">
+                            <div class="col-lg-6 mb-lg-0 mb-4">
                                 <div class="card">
-                                    <h3>Etkinlik Hizmeti</h3>
+                                    <h3>6 Ay Sonraki Tahmini Oda Hizmeti </h3>
                                     <div id="customGauge1" class="metric-card"></div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 mb-lg-0 mb-4">
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-lg-6 mb-lg-0 mb-4">
                                 <div class="card">
-                                    <h3>Personel Hizmeti</h3>
+                                    <h3>Yemek Hizmeti</h3>
                                     <div id="customGauge2" class="metric-card"></div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 mb-lg-0 mb-4">
+                            <div class="col-lg-6 mb-lg-0 mb-4">
                                 <div class="card">
-                                    <h3>Temizlik Hizmeti</h3>
+                                    <h3> 6 Ay Sonraki Tahmini Yemek Hizmeti</h3>
                                     <div id="customGauge3" class="metric-card"></div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 text-center mt-4">
-                                <div class="input-container">
-                                    <select id="metricSelect">
-                                        <option value="0">Metric 0</option>
-                                        <option value="1">Metric 1</option>
-                                        <option value="2">Metric 2</option>
-                                        <option value="3">Metric 3</option>
-                                    </select>
-                                    <h3>Kalan Bakiye: <span id="moneyLeft">10</span></h3>
-                                    <input id="amountInput" type="number" min="0" placeholder="Enter amount">
-                                    <button id="addMoneyButton" class="btn btn-primary">Add Money</button>
-                                    <button id="subtractMoneyButton" class="btn btn-primary">Subtract Money</button>
-                                </div>
+                        </div>
 
+                        <div class="row mt-4">
+                            <div class="col-lg-6 mb-lg-0 mb-4">
+                                <div class="card">
+                                    <h3>Personel Hizmeti</h3>
+                                    <div id="customGauge4" class="metric-card"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-lg-0 mb-4">
+                                <div class="card">
+                                    <h3> 6 Ay Sonraki Tahmini Personel Hizmeti</h3>
+                                    <div id="customGauge5" class="metric-card"></div>
+                                </div>
                             </div>
                         </div>
+
+                        <div class="row mt-4">
+                            <div class="col-lg-6 mb-lg-0 mb-4">
+                                <div class="card">
+                                    <h3>Etkinlik Hizmeti</h3>
+                                    <div id="customGauge6" class="metric-card"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-lg-0 mb-4">
+                                <div class="card">
+                                    <h3>6 Ay Sonraki Tahmini Etkinlik Hizmeti</h3>
+                                    <div id="customGauge7" class="metric-card " ></div>
+                                </div>
+                            </div>
+                        </div>
+
                 </section>
             </div>
 
@@ -191,184 +200,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="/node_modules/material-dashboard/assets/js/material-dashboard.js"></script>
     <script src="/js/memnuniyet.js"></script>
-    <script src="/js/chart.js"></script>
+    <!-- <script src="/js/chart.js"></script> -->
     <!-- <script src="/js/sankey.js"></script> -->
-    <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', (event) => {
-        google.charts.load('current', { 'packages': ['gauge'] });
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-            var initialMoney = 10; // Başlangıçta sahip olunan para
-            var moneyLeft = initialMoney;
-
-            // Grafiklerin başlangıç değerleri
-            var initialValues = [7, 8, 6, 5];
-            var currentValues = [...initialValues]; // Mevcut değerler, başlangıçta başlangıç değerlerine eşittir
-
-            var options = {
-                width: 400,
-                height: 300,
-                redFrom: 0,
-                redTo: 6,
-                yellowFrom: 6,
-                yellowTo: 8,
-                greenFrom: 8,
-                greenTo: 10,
-                max: 10,
-                minorTicks: 1,
-                forceIFrame: false,
-                animation: {
-                    duration: 0
-                }
-            };
-
-            // Her bir grafiği çizmek için bir fonksiyon
-            function drawChartWithData(chartId, data) {
-                console.log('drawChartWithData', chartId, data);
-                var chart = new google.visualization.Gauge(document.getElementById(chartId));
-                chart.draw(data, options);
-            }
-
-            // Grafik verilerini güncellemek için bir fonksiyon
-            function updateChartValues(chartId, amount) {
-                // Mevcut değerlere para ekleyin
-                if (!isNaN(currentValues[chartId]) && !isNaN(amount)) {
-                    currentValues[chartId] += amount;
-                } else {
-                    console.error('Invalid value: currentValues[' + chartId + '] = ' + currentValues[chartId] + ', amount = ' + amount);
-                    return;
-                }
-
-                // Eğer değer alt sınırdan küçükse alt sınıra ayarlayın
-                if (currentValues[chartId] < options.redFrom) {
-                    currentValues[chartId] = options.redFrom;
-                }
-
-                // Eğer değer üst sınırdan büyükse üst sınıra ayarlayın
-                if (currentValues[chartId] > options.greenTo) {
-                    currentValues[chartId] = options.greenTo;
-                }
-
-                // Yeni veri tablosunu oluşturun ve grafiği güncelleyin
-                var newData = google.visualization.arrayToDataTable([
-                    ['', 'Value'],
-                    ['', currentValues[chartId]],
-                ]);
-
-                drawChartWithData('customGauge' + chartId, newData);
-
-                // Kalan parayı güncelleyin
-                moneyLeft -= amount;
-                document.getElementById('moneyLeft').textContent = moneyLeft.toFixed(2);
-            }
-
-            // Para çıkarmak için bir fonksiyon
-            function subtractMoney(chartId, amount) {
-                // Mevcut değerlerden para çıkarın
-                if (!isNaN(currentValues[chartId]) && !isNaN(amount)) {
-                    currentValues[chartId] -= amount;
-                } else {
-                    console.error('Invalid value: currentValues[' + chartId + '] = ' + currentValues[chartId] + ', amount = ' + amount);
-                    return;
-                }
-
-                // Eğer değer alt sınırdan küçükse alt sınıra ayarlayın
-                if (currentValues[chartId] < options.redFrom) {
-                    currentValues[chartId] = options.redFrom;
-                }
-
-                // Eğer değer üst sınırdan büyükse üst sınıra ayarlayın
-                if (currentValues[chartId] > options.greenTo) {
-                    currentValues[chartId] = options.greenTo;
-                }
-
-                // Yeni veri tablosunu oluşturun ve grafiği güncelleyin
-                var newData = google.visualization.arrayToDataTable([
-                    ['', 'Value'],
-                    ['', currentValues[chartId]],
-                ]);
-
-                drawChartWithData('customGauge' + chartId, newData);
-
-                // Kalan parayı güncelleyin
-                moneyLeft += amount;
-                document.getElementById('moneyLeft').textContent = moneyLeft.toFixed(2);
-            }
-
-            // Başlangıçta grafikleri çiz
-            for (var i = 0; i < initialValues.length; i++) {
-                var initialData = google.visualization.arrayToDataTable([
-                    ['', 'Value'],
-                    ['', initialValues[i]],
-                ]);
-
-                drawChartWithData('customGauge' + i, initialData);
-            }
-
-
-            function addMoney() {
-                var amountString = prompt('Lütfen eklemek istediğiniz miktarı girin:', '0');
-
-                // Kullanıcının girdisini sayıya dönüştürün
-                var amount = parseFloat(amountString);
-
-                // Geçerli bir miktar girildiğinden emin olun
-                if (!isNaN(amount) && amount > 0 && moneyLeft >= amount) {
-                    // Her grafik için miktarı güncelle
-                    for (var i = 0; i < currentValues.length; i++) {
-                        updateChartValues('customGauge' + i, amount / currentValues.length);
-                    }
-                } else {
-                    alert('Geçersiz miktar veya yetersiz bakiye!');
-                }
-            }
-
-
-
-            // Para eklemek için bir buton ekleyin
-            var addButton = document.getElementById('addMoneyButton');
-            addButton.addEventListener('click', function () {
-                // Kullanıcı hangi metrik grafiğine para eklemek istediğini seçsin
-                var selectedChartId = document.getElementById('metricSelect').value;
-
-                var amountString = document.getElementById('amountInput').value;
-
-                // Kullanıcının girdisini sayıya dönüştürün
-                var amount = parseFloat(amountString);
-
-                // Geçerli bir miktar girildiğinden emin olun
-                if (!isNaN(amount) && amount > 0 && moneyLeft >= amount) {
-                    // Seçilen grafiği güncelle
-                    updateChartValues(selectedChartId, amount);
-                } else {
-                    alert('Geçersiz miktar veya yetersiz bakiye!');
-                }
-            });
-
-            // Para çıkarmak için bir buton ekleyin
-            var subtractButton = document.getElementById('subtractMoneyButton');
-            subtractButton.addEventListener('click', function () {
-                // Kullanıcı hangi metrik grafiğinden para çıkarmak istediğini seçsin
-                var selectedChartId = document.getElementById('metricSelect').value;
-
-                var amountString = document.getElementById('amountInput').value;
-
-                // Kullanıcının girdisini sayıya dönüştürün
-                var amount = parseFloat(amountString);
-
-                // Geçerli bir miktar girildiğinden emin olun
-                if (!isNaN(amount) && amount > 0 && currentValues[selectedChartId] >= amount) {
-                    // Seçilen grafiği güncelle
-                    subtractMoney(selectedChartId, amount);
-                } else {
-                    alert('Geçersiz miktar veya yetersiz bakiye!');
-                }
-            });
-
-        }
-    });
-    </script>
+    <!-- <script src="/js/metric.js"></script> -->
 </body>
 
 </html>

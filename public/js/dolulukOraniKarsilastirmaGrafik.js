@@ -8,8 +8,8 @@ const chartConfig = {
     dataSource: {
         chart: {
             caption: `Gelecek 12 Tahmini Doluluk Oranı `,
-            yaxisname: "# of İptal",
-            subcaption: "Son hafta",
+            yaxisname: "# of Doluluk",
+            subcaption: "Eski Fiyat",
             numdivlines: "3",
             showvalues: "0",
             legenditemfontsize: "15",
@@ -33,9 +33,9 @@ const chartConfig1 = {
     dataFormat: "json",
     dataSource: {
         chart: {
-            caption: "Gelecek 12 Tahmini İptal Oranı", // Adjust the caption as needed
-            yaxisname: "# of İptal",
-            subcaption: "Son hafta",
+            caption: "Gelecek 12 Tahmini Doluluk Oranı", // Adjust the caption as needed
+            yaxisname: "# of Doluluk",
+            subcaption: "Güncel Fiyat",
             numdivlines: "3",
             showvalues: "0",
             legenditemfontsize: "15",
